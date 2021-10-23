@@ -1,8 +1,7 @@
 package com.xxx.ch01singleton;
 
 /**
- * lazy loading
- * 也称 懒汉式
+ * lazy loading 也称 懒汉式
  * 虽然达到了按需初始化的目的, 但却带来多线程不安全的问题
  */
 

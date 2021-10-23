@@ -1,12 +1,12 @@
 package com.xxx.ch01singleton;
 
 /**
- *
- * 跟01是一样的.使用静态语句块进行定义
+ * 跟Mgr01是一样的.使用静态语句块进行定义
  */
 
 public class Mgr02 {
     private static final Mgr02 INSTANCE;
+    //使用静态语句块进行定义
     static {
         INSTANCE = new Mgr02();
     }
