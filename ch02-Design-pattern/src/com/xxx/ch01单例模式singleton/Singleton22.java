@@ -1,4 +1,4 @@
-package com.xxx.ch01singleton;
+package com.xxx.ch01单例模式singleton;
 
 /**
  * lazy loading  * 也称 懒汉式
@@ -6,20 +6,20 @@ package com.xxx.ch01singleton;
  * * * 可以通过synchronized解决, 但也带来了效率下降
  */
 
-public class Mgr03_1 {
-    private static Mgr03_1 INSTANCE;
+public class Singleton22 {
+    private static Singleton22 INSTANCE;
 
-    private Mgr03_1() {
+    private Singleton22() {
     }
 
-    public static synchronized Mgr03_1 getInstance() {
+    public static synchronized Singleton22 getInstance() {
         if (INSTANCE == null) {
             try {
                 Thread.sleep(1);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            INSTANCE = new Mgr03_1();
+            INSTANCE = new Singleton22();
         }
         return INSTANCE;
     }
@@ -33,7 +33,7 @@ public class Mgr03_1 {
 
         for (int i = 0; i < 100; i++) {
             new Thread(()-> {
-                System.out.println(Mgr03_1.getInstance().hashCode());  //打印对象
+                System.out.println(Singleton22.getInstance().hashCode());  //打印对象
             }).start();
         }
     }

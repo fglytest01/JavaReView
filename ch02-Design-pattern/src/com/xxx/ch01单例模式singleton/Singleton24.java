@@ -1,29 +1,31 @@
-package com.xxx.ch01singleton;
+package com.xxx.ch01单例模式singleton;
 
 /*
  * lazy loading  * 也称 懒汉式
  * 虽然达到了按需初始化的目的, 但却带来多线程不安全的问题
  * 可以通过synchronized解决, 但也带来了效率下降
- * ** 双判断检查   OK **
+ * ** 双判断检查  **
  */
 
-public class Mgr03_3 {
-    private static Mgr03_3 INSTANCE;
+public class Singleton24 {
+    private static Singleton24 INSTANCE;
 
-    private Mgr03_3() {
+    private Singleton24() {
     }
 
-    public static Mgr03_3 getInstance() {
+    public static Singleton24 getInstance() {
+        //先检查实例是否存在，如果不存在才进入下面的同步块
         if (INSTANCE == null) {
-            //双判断检查
-            synchronized(Mgr03_3.class){
+            //同步块，线程安全的创建实例
+            synchronized(Singleton24.class){
+                //再次检查实例是否存在，如果不存在才真正的创建实例
                 if (INSTANCE == null) {
                     try {
                         Thread.sleep(1);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    INSTANCE = new Mgr03_3();
+                    INSTANCE = new Singleton24();
                 }
             }
         }
@@ -39,7 +41,7 @@ public class Mgr03_3 {
 
         for (int i = 0; i < 100; i++) {
             new Thread(()-> {
-                System.out.println(Mgr03_3.getInstance().hashCode());  //打印对象
+                System.out.println(Singleton24.getInstance().hashCode());  //打印对象
             }).start();
         }
     }
